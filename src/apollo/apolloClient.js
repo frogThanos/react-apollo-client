@@ -1,7 +1,8 @@
 import ApolloClient from 'apollo-boost';
 
 const client = new ApolloClient({
-  uri: `${process.env.GRPAPHQLURI}`,
+  uri: 'http://localhost:4040/graphql',
+  credentials: 'same-origin',
 });
 
 
