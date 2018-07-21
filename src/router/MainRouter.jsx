@@ -16,9 +16,9 @@ class MainRouter extends PureComponent {
     return (
       <BrowserRouter>
         <Switch>
-          <Route to="/" exact component={App} />
-          <Route to="/signin" exact component={SignIn} />
-          <Route to="/signup" exact component={SignUp} />
+          <Route path="/" exact component={App} />
+          <Route path="/signin" exact component={SignIn} />
+          <Route path="/signup" exact component={SignUp} />
           <Redirect to="/" />
         </Switch>
       </BrowserRouter>
