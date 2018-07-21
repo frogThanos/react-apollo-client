@@ -6,7 +6,10 @@ import {
   Redirect,
 } from 'react-router-dom';
 
+// Components
 import App from '../App';
+import SignIn from '../components/auth/SignIn';
+import SignUp from '../components/auth/SignUp';
 
 class MainRouter extends PureComponent {
   render() {
@@ -14,8 +17,8 @@ class MainRouter extends PureComponent {
       <BrowserRouter>
         <Switch>
           <Route to="/" exact component={App} />
-          <Route to="/signin" exact component={App} />
-          <Route to="/signup" exact component={App} />
+          <Route to="/signin" exact component={SignIn} />
+          <Route to="/signup" exact component={SignUp} />
           <Redirect to="/" />
         </Switch>
       </BrowserRouter>
