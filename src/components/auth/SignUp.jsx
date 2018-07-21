@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import {
   FormContainer,
   FromTitle,
+  Form,
+  FormInput,
 } from './styled';
 
 class SignUp extends PureComponent {
@@ -11,23 +13,23 @@ class SignUp extends PureComponent {
         <FromTitle>
           SignUp
         </FromTitle>
-        <form>
-          <input
+        <Form>
+          <FormInput
             type="text"
             name="username"
             placeholder="Username"
           />
-          <input
+          <FormInput
             type="email"
             name="email"
             placeholder="Email Address"
           />
-          <input
+          <FormInput
             type="password"
             name="password"
             placeholder="Password"
           />
-          <input
+          <FormInput
             type="password"
             name="passwordConfirmation"
             placeholder="Confirm your password"
@@ -35,7 +37,7 @@ class SignUp extends PureComponent {
           <button type="submit">
             Submit
           </button>
-        </form>
+        </Form>
       </FormContainer>
     );
   }
