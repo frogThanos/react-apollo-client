@@ -1,27 +1,42 @@
 import React, { PureComponent } from 'react';
 import { Mutation } from 'react-apollo';
+import { SIGNUP_USER } from '../../queries';
 import {
   FormContainer,
   FromTitle,
   Form,
   FormInput,
 } from './styled';
+import Error from './Error';
+
+const initialState = {
+  username: '',
+  email: '',
+  password: '',
+  passwordConfirmation: '',
+};
 
 class SignUp extends PureComponent {
-  state = {
-    username: '',
-    email: '',
-    password: '',
-    passwordConfirmation: '',
-  };
+  state = { ...initialState };
 
   handleChange = (event) => {
-    event.preventDefault();
     if (event) {
       const { name, value } = event.target;
       console.log(name, ':', value);
       this.setState({ [name]: value });
     }
+  };
+
+  clearState = () => {
+    this.setState({ ...initialState });
+  };
+
+  handleSubmit = (event, signUpUser) => {
+    event.preventDefault();
+    signUpUser().then((data) => {
+      console.log(data);
+      this.clearState();
+    });
   };
 
   render() {
@@ -36,10 +51,17 @@ class SignUp extends PureComponent {
         <FromTitle>
           SignUp
         </FromTitle>
-        <Mutation mutation={SIGNUP_USER}>
-          {() => {
+        <Mutation
+          mutation={SIGNUP_USER}
+          variables={{
+            username,
+            email,
+            password,
+          }}
+        >
+          {(signUpUser, { data, loading, error }) => {
             return (
-              <Form>
+              <Form onSubmit={event => this.handleSubmit(event, signUpUser)}>
                 <FormInput
                   type="text"
                   name="username"
@@ -71,6 +93,7 @@ class SignUp extends PureComponent {
                 <button type="submit">
                   Submit
                 </button>
+                {error && <Error error={error} />}
               </Form>
             );
           }}

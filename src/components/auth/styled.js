@@ -20,9 +20,14 @@ const FormInput = styled.input`
   width: 100%;
 `;
 
+const ErrorText = styled.p`
+  color: red;
+`;
+
 export {
   FormContainer,
   FromTitle,
   Form,
   FormInput,
+  ErrorText,
 };
