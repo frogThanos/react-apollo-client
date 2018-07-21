@@ -35,6 +35,7 @@ class SignUp extends PureComponent {
     event.preventDefault();
     signUpUser().then((data) => {
       console.log(data);
+      localStorage.setItem('token', data.signUpUser.token);
       this.clearState();
     });
   };
