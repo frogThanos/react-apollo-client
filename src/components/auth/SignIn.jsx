@@ -1,12 +1,17 @@
 import React, { PureComponent } from 'react';
-import styled from 'styled-components';
+import {
+  FormContainer,
+  FromTitle,
+} from './styled';
 
 class SignIn extends PureComponent {
   render() {
     return (
-      <div>
-        SignIn
-      </div>
+      <FormContainer>
+        <FromTitle>
+          SignIn
+        </FromTitle>
+      </FormContainer>
     );
   }
 }

@@ -1,12 +1,42 @@
 import React, { PureComponent } from 'react';
-import styled from 'styled-components';
+import {
+  FormContainer,
+  FromTitle,
+} from './styled';
 
 class SignUp extends PureComponent {
   render() {
     return (
-      <div>
-        SignUp
-      </div>
+      <FormContainer>
+        <FromTitle>
+          SignUp
+        </FromTitle>
+        <form>
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+          />
+          <input
+            type="password"
+            name="passwordConfirmation"
+            placeholder="Confirm your password"
+          />
+          <button type="submit">
+            Submit
+          </button>
+        </form>
+      </FormContainer>
     );
   }
 }
