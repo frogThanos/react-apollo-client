@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Mutation } from 'react-apollo';
-import { SIGNUP_USER } from '../../queries';
+import { SIGN_UP_USER } from '../../queries';
 import {
   FormContainer,
   FromTitle,
@@ -63,7 +63,7 @@ class SignUp extends PureComponent {
           SignUp
         </FromTitle>
         <Mutation
-          mutation={SIGNUP_USER}
+          mutation={SIGN_UP_USER}
           variables={{
             username,
             email,
