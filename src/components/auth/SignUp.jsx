@@ -39,6 +39,17 @@ class SignUp extends PureComponent {
     });
   };
 
+  validateForm = () => {
+    const {
+      username,
+      email,
+      password,
+      passwordConfirmation,
+    } = this.state;
+
+    return !username || !email || !password || password !== passwordConfirmation;
+  };
+
   render() {
     const {
       username,
@@ -90,7 +101,10 @@ class SignUp extends PureComponent {
                   placeholder="Confirm your password"
                   onChange={this.handleChange}
                 />
-                <button type="submit">
+                <button
+                  type="submit"
+                  disabled={loading || this.validateForm()}
+                >
                   Submit
                 </button>
                 {error && <Error error={error} />}
