@@ -21,7 +21,6 @@ class SignIn extends PureComponent {
   handleChange = (event) => {
     if (event) {
       const { name, value } = event.target;
-      console.log(name, ':', value);
       this.setState({ [name]: value });
     }
   };
@@ -34,7 +33,6 @@ class SignIn extends PureComponent {
     const { history, refetch } = this.props;
     event.preventDefault();
     signInUser().then(async ({ data }) => {
-      console.log(data);
       localStorage.setItem('token', data.signInUser.token);
       await refetch();
       this.clearState();
@@ -68,7 +66,7 @@ class SignIn extends PureComponent {
             password,
           }}
         >
-          {(signInUser, { data, loading, error }) => {
+          {(signInUser, { loading, error }) => {
             return (
               <Form onSubmit={event => this.handleSubmit(event, signInUser)}>
                 <FormInput

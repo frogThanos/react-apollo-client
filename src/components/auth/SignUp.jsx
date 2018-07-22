@@ -23,7 +23,6 @@ class SignUp extends PureComponent {
   handleChange = (event) => {
     if (event) {
       const { name, value } = event.target;
-      console.log(name, ':', value);
       this.setState({ [name]: value });
     }
   };
@@ -36,7 +35,6 @@ class SignUp extends PureComponent {
     const { history, refetch } = this.props;
     event.preventDefault();
     signUpUser().then(async ({ data }) => {
-      console.log(data);
       localStorage.setItem('token', data.signUpUser.token);
       await refetch();
       this.clearState();
