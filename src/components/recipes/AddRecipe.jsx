@@ -8,6 +8,8 @@ import {
   FormSelect,
   FromTextArea,
 } from '../../styled';
+import { ADD_RECIPE } from '../../queries';
+import Error from '../auth/Error';
 
 class AddRecipe extends PureComponent {
   state = {
@@ -31,20 +33,48 @@ class AddRecipe extends PureComponent {
     this.setState({ [name]: value });
   };
 
-  render() {
+  handleSubmit = (event, addRecipe) => {
+    event.preventDefault();
+    addRecipe().then(({ data }) => {
+      console.log('addRecipe', data);
+    });
+  };
+
+  validateForm = () => {
     const {
       name,
       category,
       description,
       instructions,
     } = this.state;
+    const isInvalid = !name || !category || !description || !instructions;
+    return isInvalid;
+  };
+
+  render() {
+    const {
+      name,
+      category,
+      description,
+      instructions,
+      username,
+    } = this.state;
     return (
       <MainAppContainer>
         <FromTitle>AddRecipe</FromTitle>
-        <Mutation>
-          {() => {
+        <Mutation
+          mutation={ADD_RECIPE}
+          variables={{
+            name,
+            category,
+            description,
+            instructions,
+            username,
+          }}
+        >
+          {(addRecipe, { loading, error }) => {
             return (
-              <Form>
+              <Form onSubmit={(event) => this.handleSubmit(event, addRecipe)}>
                 <FormInput
                   type="text"
                   name="name"
@@ -75,9 +105,13 @@ class AddRecipe extends PureComponent {
                   placeholder="instructions"
                   onChange={this.handleChange}
                 />
-                <button type="submit">
+                <button
+                  type="submit"
+                  disabled={loading || this.validateForm()}
+                >
                   create recipe
                 </button>
+                {error && <Error error={error} />}
               </Form>
             );
           }}

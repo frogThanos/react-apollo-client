@@ -13,6 +13,7 @@
     "no-undef": "off",
     "arrow-body-style": "off",
     "no-else-return": "off",
+    "no-return-assign": "off",
     "array-callback-return": "off",
     "consistent-return": "off",
     "react/prefer-stateless-function": "off",
