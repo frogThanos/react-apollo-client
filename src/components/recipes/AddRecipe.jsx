@@ -1,9 +1,14 @@
 import React from 'react';
-import { MainAppContainer } from '../../styled';
+import {
+  MainAppContainer,
+  FromTitle,
+  Form,
+  FormInput,
+} from '../../styled';
 
 const AddRecipe = () => (
   <MainAppContainer>
-    AddRecipe
+    <FromTitle>AddRecipe</FromTitle>
   </MainAppContainer>
 );
 

@@ -3,11 +3,11 @@ import { Mutation } from 'react-apollo';
 import { withRouter } from 'react-router-dom';
 import { SIGN_IN_USER } from '../../queries';
 import {
+  MainAppContainer,
   FromTitle,
   Form,
   FormInput,
-} from './styled';
-import { MainAppContainer } from '../../styled';
+} from '../../styled';
 import Error from './Error';
 
 const initialState = {
