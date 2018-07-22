@@ -29,10 +29,40 @@ const NavBarUnAuth = () => (
   </Links>
 );
 
+const NavBarAuth = () => (
+  <Links>
+    <LinkItem>
+      <NavLink to="/" exact activeStyle={active}>
+        Home
+      </NavLink>
+    </LinkItem>
+    <LinkItem>
+      <NavLink to="/search" exact activeStyle={active}>
+        Search
+      </NavLink>
+    </LinkItem>
+    <LinkItem>
+      <NavLink to="/recipe/add" exact activeStyle={active}>
+        Add Recipe
+      </NavLink>
+    </LinkItem>
+    <LinkItem>
+      <NavLink to="/profile" exact activeStyle={active}>
+        Profile
+      </NavLink>
+    </LinkItem>
+    <LinkItem>
+      <button type="button">
+        Sign Out
+      </button>
+    </LinkItem>
+  </Links>
+);
+
 
 const Navigation = () => (
   <MainNav>
-    <NavBarUnAuth />
+    <NavBarAuth />
   </MainNav>
 );
 
