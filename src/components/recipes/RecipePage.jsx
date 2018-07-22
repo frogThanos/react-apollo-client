@@ -1,8 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import { Query } from 'react-apollo';
 import { GET_RECIPE } from '../../queries';
+import { MainAppContainer } from '../../styled';
 
 const RecipePage = ({ match: { params: { _id } } }) => (
   <Query query={GET_RECIPE} variables={{ _id }}>
@@ -19,7 +19,7 @@ const RecipePage = ({ match: { params: { _id } } }) => (
         username,
       } = data.getRecipe;
       return (
-        <RecipePageContainer>
+        <MainAppContainer>
           <h2>{name}</h2>
           <p>Category: {category}</p>
           <p>Description: {description}</p>
@@ -29,15 +29,10 @@ const RecipePage = ({ match: { params: { _id } } }) => (
           <button type="button">
             like
           </button>
-        </RecipePageContainer>
+        </MainAppContainer>
       );
     }}
   </Query>
 );
-
-const RecipePageContainer = styled.div`
-  text-align: center;
-  margin-top: 20px;
-`;
 
 export default withRouter(RecipePage);

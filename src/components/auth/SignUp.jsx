@@ -3,11 +3,11 @@ import { Mutation } from 'react-apollo';
 import { withRouter } from 'react-router-dom';
 import { SIGN_UP_USER } from '../../queries';
 import {
-  FormContainer,
   FromTitle,
   Form,
   FormInput,
 } from './styled';
+import { MainAppContainer } from '../../styled';
 import Error from './Error';
 
 const initialState = {
@@ -61,7 +61,7 @@ class SignUp extends PureComponent {
       passwordConfirmation,
     } = this.state;
     return (
-      <FormContainer>
+      <MainAppContainer>
         <FromTitle>
           SignUp
         </FromTitle>
@@ -73,7 +73,7 @@ class SignUp extends PureComponent {
             password,
           }}
         >
-          {(signUpUser, { data, loading, error }) => {
+          {(signUpUser, { loading, error }) => {
             return (
               <Form onSubmit={event => this.handleSubmit(event, signUpUser)}>
                 <FormInput
@@ -115,7 +115,7 @@ class SignUp extends PureComponent {
             );
           }}
         </Mutation>
-      </FormContainer>
+      </MainAppContainer>
     );
   }
 }

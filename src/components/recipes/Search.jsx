@@ -1,9 +1,10 @@
 import React from 'react';
+import { MainAppContainer } from '../../styled';
 
 const Search = () => (
-  <div>
+  <MainAppContainer>
     Search
-  </div>
+  </MainAppContainer>
 );
 
 export default Search;

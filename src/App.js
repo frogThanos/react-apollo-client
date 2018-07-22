@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import { Query } from 'react-apollo';
 import { GET_ALL_RECIPES } from './queries';
-
+import { MainAppContainer } from './styled';
 import RecipeItem from './components/recipes/RecipeItem';
 
 class App extends Component {
@@ -45,9 +44,5 @@ class App extends Component {
     );
   }
 }
-
-const MainAppContainer = styled.div`
-  text-align: center;
-`;
 
 export default App;

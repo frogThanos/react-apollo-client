@@ -1,9 +1,10 @@
 import React from 'react';
+import { MainAppContainer } from '../../styled';
 
 const AddRecipe = () => (
-  <div>
+  <MainAppContainer>
     AddRecipe
-  </div>
+  </MainAppContainer>
 );
 
 export default AddRecipe;

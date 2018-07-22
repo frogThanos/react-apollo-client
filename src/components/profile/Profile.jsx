@@ -1,9 +1,10 @@
 import React from 'react';
+import { MainAppContainer } from '../../styled';
 
 const Profile = () => (
-  <div>
+  <MainAppContainer>
     Profile
-  </div>
+  </MainAppContainer>
 );
 
 export default Profile;
