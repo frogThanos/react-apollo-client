@@ -7,6 +7,8 @@
   "rules": {
     "react/prop-types": 0,
     "react/jsx-one-expression-per-line": "off",
+    "react/no-unused-state": "off",
+    "react/destructuring-assignment": "off",
     "arrow-parens": ["off"],
     "no-undef": "off",
     "arrow-body-style": "off",

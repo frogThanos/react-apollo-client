@@ -25,7 +25,7 @@ class MainRouter extends PureComponent {
           <Navigation session={session} />
           <Switch>
             <Route path="/" exact component={App} />
-            <Route path="/recipe/add" component={AddRecipe} />
+            <Route path="/recipe/add" render={() => <AddRecipe session={session} />} />
             <Route path="/recipes/:_id" component={RecipePage} />
             <Route path="/profile" component={Profile} />
             <Route path="/search" component={Search} />
