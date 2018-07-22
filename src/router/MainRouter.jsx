@@ -17,11 +17,11 @@ import SignUp from '../components/auth/SignUp';
 
 class MainRouter extends PureComponent {
   render() {
-    const { refetch } = this.props;
+    const { refetch, session } = this.props;
     return (
       <BrowserRouter>
         <Fragment>
-          <Navigation />
+          <Navigation session={session} />
           <Switch>
             <Route path="/" exact component={App} />
             <Route path="/recipe/add" component={AddRecipe} />

@@ -15,6 +15,7 @@ export const Links = styled.ul`
 
 export const LinkItem = styled.li`
   flex: 1;
+  color: white;
   a {
     text-decoration: none;
     color: white;

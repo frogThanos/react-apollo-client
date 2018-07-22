@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { MainNav, Links, LinkItem } from './styled';
 
@@ -29,40 +29,47 @@ const NavBarUnAuth = () => (
   </Links>
 );
 
-const NavBarAuth = () => (
-  <Links>
-    <LinkItem>
-      <NavLink to="/" exact activeStyle={active}>
-        Home
-      </NavLink>
-    </LinkItem>
-    <LinkItem>
-      <NavLink to="/search" exact activeStyle={active}>
-        Search
-      </NavLink>
-    </LinkItem>
-    <LinkItem>
-      <NavLink to="/recipe/add" exact activeStyle={active}>
-        Add Recipe
-      </NavLink>
-    </LinkItem>
-    <LinkItem>
-      <NavLink to="/profile" exact activeStyle={active}>
-        Profile
-      </NavLink>
-    </LinkItem>
-    <LinkItem>
-      <button type="button">
-        Sign Out
-      </button>
-    </LinkItem>
-  </Links>
+const NavBarAuth = ({ session }) => (
+  <Fragment>
+    <Links>
+      <LinkItem>
+        Welcome, {session.getCurrentUser.username}
+      </LinkItem>
+      <LinkItem>
+        <NavLink to="/" exact activeStyle={active}>
+          Home
+        </NavLink>
+      </LinkItem>
+      <LinkItem>
+        <NavLink to="/search" exact activeStyle={active}>
+          Search
+        </NavLink>
+      </LinkItem>
+      <LinkItem>
+        <NavLink to="/recipe/add" exact activeStyle={active}>
+          Add Recipe
+        </NavLink>
+      </LinkItem>
+      <LinkItem>
+        <NavLink to="/profile" exact activeStyle={active}>
+          Profile
+        </NavLink>
+      </LinkItem>
+      <LinkItem>
+        <button type="button">
+          Sign Out
+        </button>
+      </LinkItem>
+    </Links>
+  </Fragment>
 );
 
 
-const Navigation = () => (
+const Navigation = ({ session }) => (
   <MainNav>
-    <NavBarAuth />
+    {session && session.getCurrentUser
+      ? <NavBarAuth session={session} /> : <NavBarUnAuth />
+    }
   </MainNav>
 );
 
