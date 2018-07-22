@@ -31,11 +31,12 @@ class SignIn extends PureComponent {
   };
 
   handleSubmit = (event, signInUser) => {
-    const { history } = this.props;
+    const { history, refetch } = this.props;
     event.preventDefault();
-    signInUser().then(({ data }) => {
+    signInUser().then(async ({ data }) => {
       console.log(data);
       localStorage.setItem('token', data.signInUser.token);
+      await refetch();
       this.clearState();
       history.push('/');
     });
