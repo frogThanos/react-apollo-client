@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Mutation } from 'react-apollo';
+import { withRouter } from 'react-router-dom';
 import {
   MainAppContainer,
   FromTitle,
@@ -11,14 +12,16 @@ import {
 import { ADD_RECIPE } from '../../queries';
 import Error from '../auth/Error';
 
+const initialState = {
+  name: '',
+  category: 'Breakfast',
+  description: '',
+  instructions: '',
+  username: '',
+};
+
 class AddRecipe extends PureComponent {
-  state = {
-    name: '',
-    category: 'Breakfast',
-    description: '',
-    instructions: '',
-    username: '',
-  };
+  state = { ...initialState };
 
   componentDidMount() {
     const { username } = this.props.session.getCurrentUser;
@@ -34,10 +37,17 @@ class AddRecipe extends PureComponent {
   };
 
   handleSubmit = (event, addRecipe) => {
+    const { history } = this.props;
     event.preventDefault();
-    addRecipe().then(({ data }) => {
-      console.log('addRecipe', data);
+    addRecipe().then(() => {
+      console.log('addRecipe');
+      this.clearState();
+      history.push('/');
     });
+  };
+
+  clearState = () => {
+    this.setState({ ...initialState });
   };
 
   validateForm = () => {
@@ -49,6 +59,10 @@ class AddRecipe extends PureComponent {
     } = this.state;
     const isInvalid = !name || !category || !description || !instructions;
     return isInvalid;
+  };
+
+  updateCache = (cache, data) => {
+    console.log('updateCache', cache, data);
   };
 
   render() {
@@ -71,6 +85,7 @@ class AddRecipe extends PureComponent {
             instructions,
             username,
           }}
+          update={this.updateCache}
         >
           {(addRecipe, { loading, error }) => {
             return (
@@ -83,7 +98,7 @@ class AddRecipe extends PureComponent {
                   onChange={this.handleChange}
                 />
                 <FormSelect
-                  name="Category"
+                  name="category"
                   value={category}
                   onChange={this.handleChange}
                 >
@@ -121,4 +136,4 @@ class AddRecipe extends PureComponent {
   }
 }
 
-export default AddRecipe;
+export default withRouter(AddRecipe);
