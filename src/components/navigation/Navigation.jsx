@@ -1,37 +1,39 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { MainNav, Links, LinkItem } from './styled';
 
+const active = { fontWeight: '800', textDecoration: 'underline' };
 
 const NavBarUnAuth = () => (
-  <ul>
-    <li>
-      <NavLink to="/" exact>
+  <Links>
+    <LinkItem>
+      <NavLink to="/" exact activeStyle={active}>
         Home
       </NavLink>
-    </li>
-    <li>
-      <NavLink to="/search">
+    </LinkItem>
+    <LinkItem>
+      <NavLink to="/search" exact activeStyle={active}>
         Search
       </NavLink>
-    </li>
-    <li>
-      <NavLink to="/signin">
+    </LinkItem>
+    <LinkItem>
+      <NavLink to="/signin" exact activeStyle={active}>
         Sign In
       </NavLink>
-    </li>
-    <li>
-      <NavLink to="/signup">
+    </LinkItem>
+    <LinkItem>
+      <NavLink to="/signup" exact activeStyle={active}>
         Sign Up
       </NavLink>
-    </li>
-  </ul>
+    </LinkItem>
+  </Links>
 );
 
 
 const Navigation = () => (
-  <nav>
+  <MainNav>
     <NavBarUnAuth />
-  </nav>
+  </MainNav>
 );
 
 export default Navigation;
