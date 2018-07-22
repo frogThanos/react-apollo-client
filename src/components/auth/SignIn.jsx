@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Mutation } from 'react-apollo';
+import { withRouter } from 'react-router-dom';
 import { SIGN_IN_USER } from '../../queries';
 import {
   FormContainer,
@@ -30,11 +31,13 @@ class SignIn extends PureComponent {
   };
 
   handleSubmit = (event, signInUser) => {
+    const { history } = this.props;
     event.preventDefault();
     signInUser().then(({ data }) => {
       console.log(data);
       localStorage.setItem('token', data.signInUser.token);
       this.clearState();
+      history.push('/');
     });
   };
 
@@ -97,4 +100,4 @@ class SignIn extends PureComponent {
   }
 }
 
-export default SignIn;
+export default withRouter(SignIn);
