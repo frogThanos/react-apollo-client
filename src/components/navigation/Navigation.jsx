@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { MainNav, Links, LinkItem } from './styled';
+import SignOut from '../auth/SignOut';
 
 const active = { fontWeight: '800', textDecoration: 'underline' };
 
@@ -56,9 +57,7 @@ const NavBarAuth = ({ session }) => (
         </NavLink>
       </LinkItem>
       <LinkItem>
-        <button type="button">
-          Sign Out
-        </button>
+        <SignOut />
       </LinkItem>
     </Links>
   </Fragment>
