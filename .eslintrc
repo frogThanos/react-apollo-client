@@ -6,6 +6,8 @@
   "parser": "babel-eslint",
   "rules": {
     "react/prop-types": 0,
+    "react/jsx-one-expression-per-line": "off",
+    "arrow-parens": ["off"],
     "no-undef": "off",
     "arrow-body-style": "off",
     "no-else-return": "off",
@@ -22,6 +24,7 @@
     "camelcase": "off",
     "react/jsx-filename-extension": "off",
     "import/extensions": "never",
-    "import/no-unresolved": "off"
+    "import/no-unresolved": "off",
+    "no-underscore-dangle": ["off"]
   }
 }

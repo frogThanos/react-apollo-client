@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { Query } from 'react-apollo';
 import { GET_ALL_RECIPES } from './queries';
 
+import RecipeItem from './components/recipes/RecipeItem';
+
 class App extends Component {
   render() {
     return (
@@ -28,9 +30,14 @@ class App extends Component {
             }
             console.log(data);
             return (
-              <div>
-                Recipes
-              </div>
+              <ul>
+                {data.getAllRecipes.map((recipe) => (
+                  <RecipeItem
+                    key={recipe._id}
+                    {...recipe}
+                  />
+                ))}
+              </ul>
             );
           }}
         </Query>

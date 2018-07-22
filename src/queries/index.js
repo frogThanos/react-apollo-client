@@ -15,12 +15,9 @@ export const GET_CURRENT_USER = gql`
 export const GET_ALL_RECIPES = gql`
   query {
       getAllRecipes {
+          _id
           name
-          description
-          instructions
           category
-          likes
-          createdDate
       }
   }
 `;
