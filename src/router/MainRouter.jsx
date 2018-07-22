@@ -9,6 +9,7 @@ import {
 // Components
 import App from '../App';
 import Navigation from '../components/navigation/Navigation';
+import Search from '../components/recipes/Search';
 import SignIn from '../components/auth/SignIn';
 import SignUp from '../components/auth/SignUp';
 
@@ -21,8 +22,9 @@ class MainRouter extends PureComponent {
           <Navigation />
           <Switch>
             <Route path="/" exact component={App} />
-            <Route path="/signin" exact render={() => <SignIn refetch={refetch} />} />
-            <Route path="/signup" exact render={() => <SignUp refetch={refetch} />} />
+            <Route path="/search" component={Search} />
+            <Route path="/signin" render={() => <SignIn refetch={refetch} />} />
+            <Route path="/signup" render={() => <SignUp refetch={refetch} />} />
             <Redirect to="/" />
           </Switch>
         </Fragment>
