@@ -9,7 +9,7 @@ import {
   FormSelect,
   FromTextArea,
 } from '../../styled';
-import { ADD_RECIPE } from '../../queries';
+import { ADD_RECIPE, GET_ALL_RECIPES } from '../../queries';
 import Error from '../auth/Error';
 
 const initialState = {
@@ -32,7 +32,6 @@ class AddRecipe extends PureComponent {
 
   handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(name, ':', value);
     this.setState({ [name]: value });
   };
 
@@ -61,8 +60,14 @@ class AddRecipe extends PureComponent {
     return isInvalid;
   };
 
-  updateCache = (cache, data) => {
-    console.log('updateCache', cache, data);
+  updateCache = (cache, { data: { addRecipe } }) => {
+    const { getAllRecipes } = cache.readQuery({ query: GET_ALL_RECIPES });
+    cache.writeQuery({
+      query: GET_ALL_RECIPES,
+      data: {
+        getAllRecipes: [addRecipe, ...getAllRecipes],
+      },
+    });
   };
 
   render() {
