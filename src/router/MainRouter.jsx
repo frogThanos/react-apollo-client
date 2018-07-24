@@ -9,7 +9,7 @@ import {
 // Components
 import App from '../App';
 import Navigation from '../components/navigation/Navigation';
-import Search from '../components/recipes/Search';
+import Search from '../components/search/Search';
 import AddRecipe from '../components/recipes/AddRecipe';
 import RecipePage from '../components/recipes/RecipePage';
 import Profile from '../components/profile/Profile';
