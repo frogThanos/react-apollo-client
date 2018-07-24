@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import { ApolloConsumer } from 'react-apollo';
+import SearchItem from './SearchItem';
 import { SEARCH_RECIPES } from '../../queries';
 import { MainAppContainer } from '../../styled';
 
@@ -35,12 +35,7 @@ class Search extends PureComponent {
                 />
                 <ul style={{ listStyle: 'none' }}>
                   {searchResults.map((recipe) => (
-                    <li key={recipe._id}>
-                      <Link to={`/recipes/${recipe._id}`}>
-                        <h2>{recipe.name}</h2>
-                      </Link>
-                      <p>{recipe.likes}</p>
-                    </li>
+                    <SearchItem key={recipe._id} {...recipe} />
                   ))}
                 </ul>
               </Fragment>
