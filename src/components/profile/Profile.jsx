@@ -1,9 +1,12 @@
 import React from 'react';
 import { MainAppContainer } from '../../styled';
 
-const Profile = () => (
+import UserInfo from './UserInfo';
+
+const Profile = ({ session }) => (
   <MainAppContainer>
     Profile
+    <UserInfo session={session} />
   </MainAppContainer>
 );
 
