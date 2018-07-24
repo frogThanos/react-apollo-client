@@ -3,13 +3,13 @@ import { withRouter } from 'react-router-dom';
 import { Query } from 'react-apollo';
 import { GET_RECIPE } from '../../queries';
 import { MainAppContainer } from '../../styled';
+import LikeRecipe from './LikeRecipe';
 
 const RecipePage = ({ match: { params: { _id } } }) => (
   <Query query={GET_RECIPE} variables={{ _id }}>
     {({ data, loading, error }) => {
       if (loading) return <div>...loading...</div>;
       if (error) return <div>...error...</div>;
-      console.log(data);
       const {
         name,
         category,
@@ -26,9 +26,7 @@ const RecipePage = ({ match: { params: { _id } } }) => (
           <p>Instructions: {instructions}</p>
           <p>Likes: {likes}</p>
           <p>Created by: {username}</p>
-          <button type="button">
-            like
-          </button>
+          <LikeRecipe />
         </MainAppContainer>
       );
     }}
