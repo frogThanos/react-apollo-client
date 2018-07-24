@@ -20,6 +20,7 @@ const UserRecipes = ({ username }) => (
       return (
         <div>
           <h3>Your Recipes</h3>
+          {!data.getUserRecipes.length && <p>You have no recipes</p>}
           <ul style={{ listStyle: 'none' }}>
             {data.getUserRecipes.map((recipe) => (
               <li key={recipe._id}>
