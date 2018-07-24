@@ -4,6 +4,7 @@ import { MainAppContainer } from '../../styled';
 // Components
 import UserInfo from './UserInfo';
 import UserRecipes from './UserRecipes';
+import withAuth from './withAuth';
 
 const Profile = ({ session }) => (
   <MainAppContainer>
@@ -13,4 +14,4 @@ const Profile = ({ session }) => (
   </MainAppContainer>
 );
 
-export default Profile;
+export default withAuth(session => session && session.getCurrentUser)(Profile);
