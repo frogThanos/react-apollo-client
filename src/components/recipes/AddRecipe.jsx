@@ -9,7 +9,7 @@ import {
   FormSelect,
   FromTextArea,
 } from '../../styled';
-import { ADD_RECIPE, GET_ALL_RECIPES } from '../../queries';
+import { ADD_RECIPE, GET_ALL_RECIPES, GET_USER_RECIPES } from '../../queries';
 import Error from '../auth/Error';
 import withAuth from '../profile/withAuth';
 
@@ -84,6 +84,9 @@ class AddRecipe extends PureComponent {
         <FromTitle>AddRecipe</FromTitle>
         <Mutation
           mutation={ADD_RECIPE}
+          refetchQueries={() => [
+            { query: GET_USER_RECIPES, variables: { username } },
+          ]}
           variables={{
             name,
             category,
