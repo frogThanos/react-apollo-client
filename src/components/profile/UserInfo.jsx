@@ -2,7 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const formatDate = (date) => {
-  return new Date(date).toLocaleDateString('nl-NL');
+  if (date) {
+    const newDate = new Date(date).toLocaleDateString('nl-NL');
+    const newTime = new Date(date).toLocaleTimeString('nl-NL');
+    return `${newDate} at ${newTime}`;
+  }
 };
 
 const UserInfo = ({ session }) => (
