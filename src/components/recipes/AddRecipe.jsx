@@ -11,6 +11,7 @@ import {
 } from '../../styled';
 import { ADD_RECIPE, GET_ALL_RECIPES } from '../../queries';
 import Error from '../auth/Error';
+import withAuth from '../profile/withAuth';
 
 const initialState = {
   name: '',
@@ -141,4 +142,4 @@ class AddRecipe extends PureComponent {
   }
 }
 
-export default withRouter(AddRecipe);
+export default withAuth(session => session && session.getCurrentUser)(withRouter(AddRecipe));
