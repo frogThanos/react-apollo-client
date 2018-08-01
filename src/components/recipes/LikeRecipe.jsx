@@ -1,28 +1,55 @@
 import React, { PureComponent } from 'react';
 import { Mutation } from 'react-apollo';
 import withSession from '../auth/withSession';
-import { LIKE_RECIPE } from '../../queries';
+import { LIKE_RECIPE, GET_RECIPE } from '../../queries';
 
 class LikeRecipe extends PureComponent {
   state = {
     username: '',
+    liked: false,
   };
 
   componentDidMount() {
     if (this.props.session.getCurrentUser) {
-      const { username } = this.props.session.getCurrentUser;
-      this.setState({ username });
+      const { username, favorites } = this.props.session.getCurrentUser;
+      const { _id } = this.props;
+      const prevLiked = favorites.findIndex(favorite => favorite._id === _id) > -1;
+      this.setState({ liked: prevLiked, username });
     }
   }
 
+  handleClick = (likeRecipe) => {
+    this.setState(prevState => ({
+      liked: !prevState.liked,
+    }), () => this.handleLike(likeRecipe));
+  };
+
   handleLike = (likeRecipe) => {
-    likeRecipe().then(({ data }) => {
-      console.log(data);
+    if (this.state.liked) {
+      likeRecipe().then(async ({ data }) => {
+        console.log(data);
+        await this.props.refetch();
+      });
+    } else {
+      console.log('unlike recipe');
+    }
+  };
+
+  updateLike = (cache, { data: { likeRecipe } }) => {
+    const { _id } = this.props;
+    const { getRecipe } = cache.readQuery({ query: GET_RECIPE, variables: { _id } });
+
+    cache.writeQuery({
+      query: GET_RECIPE,
+      variables: { _id },
+      data: {
+        getRecipe: { ...getRecipe, likes: likeRecipe.likes + 1 },
+      },
     });
   };
 
   render() {
-    const { username } = this.state;
+    const { username, liked } = this.state;
     const { _id } = this.props;
     return (
       <Mutation mutation={LIKE_RECIPE} variables={{ _id, username }}>
@@ -30,9 +57,9 @@ class LikeRecipe extends PureComponent {
           return username && (
             <button
               type="button"
-              onClick={() => this.handleLike(likeRecipe)}
+              onClick={() => this.handleClick(likeRecipe)}
             >
-              like
+              {liked ? 'Liked' : 'Like'}
             </button>
           );
         }}
