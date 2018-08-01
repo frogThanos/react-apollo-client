@@ -52,7 +52,7 @@ class LikeRecipe extends PureComponent {
     const { username, liked } = this.state;
     const { _id } = this.props;
     return (
-      <Mutation mutation={LIKE_RECIPE} variables={{ _id, username }}>
+      <Mutation mutation={LIKE_RECIPE} variables={{ _id, username }} update={this.updateLike}>
         {(likeRecipe) => {
           return username && (
             <button
