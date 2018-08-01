@@ -27,7 +27,6 @@ class App extends Component {
                 </div>
               );
             }
-            console.log(data);
             return (
               <ul>
                 {data.getAllRecipes.map((recipe) => (
