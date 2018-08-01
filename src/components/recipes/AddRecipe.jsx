@@ -15,6 +15,7 @@ import withAuth from '../profile/withAuth';
 
 const initialState = {
   name: '',
+  imageUrl: '',
   category: 'Breakfast',
   description: '',
   instructions: '',
@@ -52,11 +53,12 @@ class AddRecipe extends PureComponent {
   validateForm = () => {
     const {
       name,
+      imageUrl,
       category,
       description,
       instructions,
     } = this.state;
-    const isInvalid = !name || !category || !description || !instructions;
+    const isInvalid = !name || !imageUrl || !category || !description || !instructions;
     return isInvalid;
   };
 
@@ -73,6 +75,7 @@ class AddRecipe extends PureComponent {
   render() {
     const {
       name,
+      imageUrl,
       category,
       description,
       instructions,
@@ -88,6 +91,7 @@ class AddRecipe extends PureComponent {
           ]}
           variables={{
             name,
+            imageUrl,
             category,
             description,
             instructions,
@@ -103,6 +107,13 @@ class AddRecipe extends PureComponent {
                   name="name"
                   value={name}
                   placeholder="Recipe name"
+                  onChange={this.handleChange}
+                />
+                <FormInput
+                  type="text"
+                  name="imageUrl"
+                  value={imageUrl}
+                  placeholder="Recipe image"
                   onChange={this.handleChange}
                 />
                 <FormSelect

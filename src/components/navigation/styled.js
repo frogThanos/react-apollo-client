@@ -8,6 +8,9 @@ export const MainNav = styled.nav`
   margin: 0;
   text-align: center;
   position: fixed;
+  -webkit-box-shadow: 0 5px 5px 0 rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 5px 5px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 5px 5px 0 rgba(0,0,0,0.2);
 `;
 
 export const Links = styled.ul`
