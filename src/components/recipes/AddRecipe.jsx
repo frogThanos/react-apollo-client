@@ -40,7 +40,6 @@ class AddRecipe extends PureComponent {
     const { history } = this.props;
     event.preventDefault();
     addRecipe().then(() => {
-      console.log('addRecipe');
       this.clearState();
       history.push('/');
     });
